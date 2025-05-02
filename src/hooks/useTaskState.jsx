@@ -49,6 +49,12 @@ export const useTaskState = () => {
 
   }
 
+  const handleEdit = (task)=>{
+    setInput(task.text);
+    deleteTask(task.id);
+    
+   }
+
 
   return {
     tasks,
@@ -57,6 +63,7 @@ export const useTaskState = () => {
     handleChange,
     deleteTask,
     clear,
-    handleCheckBox
+    handleCheckBox,
+    handleEdit
   };
 };
