@@ -1,7 +1,14 @@
 import { useState } from "react";
 
 export const useTaskState = () => {
-  const [tasks, setTask] = useState([]);
+  const [tasks, setTask] = useState(() =>{
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
+
+  // estado de los filtros
+  const [inputFilter, setInputFilter] = useState('')
+  
   const [input, setInput] = useState("");
 
 
@@ -17,6 +24,9 @@ export const useTaskState = () => {
     if(e.target[0].value === '') return;
     setTask((prevTasks) => [...prevTasks, newTask]);
     setInput("");
+
+    // guardar el nuevo task en el local storage
+    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
     console.log(newTask);
   };
 
@@ -27,11 +37,15 @@ export const useTaskState = () => {
 
   const deleteTask = (id) => {
     setTask((prevTasks) => prevTasks.filter((task) => task.id !== id));
+
+    // eliminar el task especifico del local storage
+   window.localStorage.setItem("tasks", JSON.stringify(tasks.filter((task) => task.id !== id)));
      
     
   };
   const clear = () =>{
 
+    window.localStorage.removeItem("tasks");
     setTask([]);
     
   }
@@ -55,6 +69,18 @@ export const useTaskState = () => {
     
    }
 
+  //  logica filtros
+  const handleChangeInput = (e)=>{
+
+    const newInputFilter = e.target.value.toLowerCase()
+    
+
+    const filtered = tasks.filter((task)=>{
+      task.text.toLowerCase().includes(newInputFilter)
+    })
+    setInputFilter(filtered)
+  }
+
 
   return {
     tasks,
@@ -64,6 +90,8 @@ export const useTaskState = () => {
     deleteTask,
     clear,
     handleCheckBox,
-    handleEdit
+    handleEdit,
+    inputFilter,
+    handleChangeInput
   };
 };

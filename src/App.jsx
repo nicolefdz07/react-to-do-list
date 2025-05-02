@@ -3,7 +3,7 @@ import { useTaskState } from "./hooks/useTaskState";
 import { TasksComponent } from "./components/TasksComponent";
 
 function App() {
-  const { tasks, input, handleSubmit, handleChange, deleteTask, clear, handleCheckBox, handleEdit } =
+  const { tasks, input, handleSubmit, handleChange, deleteTask, clear, handleCheckBox, handleEdit, inputFilter, handleChangeInput } =
     useTaskState();
 
    
@@ -20,6 +20,9 @@ function App() {
         <button type="submit">Add Task</button>
       </form>
       <main>
+          {/* <form className="filter">
+            <input type="text" onChange={handleChangeInput} value={inputFilter} placeholder="Search Tasks"/>
+          </form> */}
         <TasksComponent tasks={tasks} 
         deleteTask={deleteTask}
         clear={clear}

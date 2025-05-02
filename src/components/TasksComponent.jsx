@@ -5,10 +5,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
  export const TasksComponent = ({ tasks, deleteTask, clear, handleCheckBox, handleEdit }) =>{
-
+  
   
       return (
         <>
+          
           <ul className="tasks-list">
             {tasks &&
               tasks.map((task) => {
