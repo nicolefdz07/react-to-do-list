@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 export const useTaskState = () => {
@@ -6,11 +7,20 @@ export const useTaskState = () => {
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
 
-  // estado de los filtros
-  const [inputFilter, setInputFilter] = useState('')
+  // estado para guardar el input de los filtros
+  const [filterInput, setFilterInput] = useState("");
   
   const [input, setInput] = useState("");
 
+  // 
+  useEffect(()=>{
+
+    // guardar el nuevo task en el local storage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  }, [tasks])
+
+   
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +31,10 @@ export const useTaskState = () => {
       text: input,
       completed: false,
     };
-    if(e.target[0].value === '') return;
+    if(e.target[0].value.trim() === '') return;
     setTask((prevTasks) => [...prevTasks, newTask]);
     setInput("");
 
-    // guardar el nuevo task en el local storage
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-    console.log(newTask);
   };
 
   const handleChange = (e) => {
@@ -38,9 +45,10 @@ export const useTaskState = () => {
   const deleteTask = (id) => {
     setTask((prevTasks) => prevTasks.filter((task) => task.id !== id));
 
+    const updatedTasks = tasks.filter((task) => task.id !== id);
     // eliminar el task especifico del local storage
-   window.localStorage.setItem("tasks", JSON.stringify(tasks.filter((task) => task.id !== id)));
-     
+   window.localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+     return updatedTasks;
     
   };
   const clear = () =>{
@@ -59,7 +67,7 @@ export const useTaskState = () => {
       )
     );
 
-    console.log(tasks)
+    // console.log(tasks)
 
   }
 
@@ -69,17 +77,13 @@ export const useTaskState = () => {
     
    }
 
-  //  logica filtros
-  const handleChangeInput = (e)=>{
-
-    const newInputFilter = e.target.value.toLowerCase()
-    
-
-    const filtered = tasks.filter((task)=>{
-      task.text.toLowerCase().includes(newInputFilter)
-    })
-    setInputFilter(filtered)
-  }
+   const filteredTasks = tasks.filter((task) => 
+    task.text.toLowerCase().includes(filterInput.toLowerCase()));
+    console.log("ESTO ES LO QUE HAY EN MI filteredTasks", filteredTasks);
+     
+    const handleInputFilter = (e) =>{
+      setFilterInput(e.target.value);
+    }
 
 
   return {
@@ -91,7 +95,10 @@ export const useTaskState = () => {
     clear,
     handleCheckBox,
     handleEdit,
-    inputFilter,
-    handleChangeInput
+    handleInputFilter,
+    filterInput,
+    filteredTasks
+
+     
   };
 };

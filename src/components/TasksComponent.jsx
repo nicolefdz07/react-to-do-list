@@ -4,16 +4,25 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
- export const TasksComponent = ({ tasks, deleteTask, clear, handleCheckBox, handleEdit }) =>{
+ export const TasksComponent = ({ tasks, deleteTask, clear, handleCheckBox, handleEdit, handleInputFilter, filterInput, filteredTasks}) =>{
   
+   
   
       return (
         <>
-          
+          {filteredTasks.length > 0 && (
+           <form>
+            <input type="text"
+            placeholder="Filter tasks"
+            value={filterInput}
+            onChange={handleInputFilter} />
+           </form>
+          )}
           <ul className="tasks-list">
-            {tasks &&
-              tasks.map((task) => {
+            {filteredTasks &&
+              filteredTasks.map((task) => {
                 return (
+
                   <li  key={task.id}>
                     <div className="tasks">
                       <Checkbox
