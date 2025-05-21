@@ -67,7 +67,7 @@ export const useTaskState = () => {
       )
     );
 
-    // console.log(tasks)
+    
 
   }
 
@@ -79,7 +79,7 @@ export const useTaskState = () => {
 
    const filteredTasks = tasks.filter((task) => 
     task.text.toLowerCase().includes(filterInput.toLowerCase()));
-    console.log("ESTO ES LO QUE HAY EN MI filteredTasks", filteredTasks);
+    console.log( filteredTasks);
      
     const handleInputFilter = (e) =>{
       setFilterInput(e.target.value);

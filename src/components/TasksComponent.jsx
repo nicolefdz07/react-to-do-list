@@ -11,8 +11,9 @@ import EditIcon from '@mui/icons-material/Edit';
       return (
         <>
           {filteredTasks.length > 0 && (
-           <form>
-            <input type="text"
+           <form onSubmit={(e) => e.preventDefault()}
+           className="filter-form">
+            <input className="filter-task-btn" type="text"
             placeholder="Filter tasks"
             value={filterInput}
             onChange={handleInputFilter} />
@@ -23,20 +24,34 @@ import EditIcon from '@mui/icons-material/Edit';
               filteredTasks.map((task) => {
                 return (
 
-                  <li  key={task.id}>
+                  <li className="li-task" key={task.id}>
                     <div className="tasks">
-                      <Checkbox
+                      <Checkbox 
                         checked={task.completed}
                         onClick={() => handleCheckBox(task.id)}
+                        // estilos
+                        sx={{
+                          color: 'rgba(188, 61, 94, 1)', 
+                          '&.Mui-checked': {
+                            color: ' rgba(188, 61, 94, 1)', 
+                          },
+                          '& .MuiSvgIcon-root': {
+                            fontSize: 30,         
+                            width: 50,
+                            height: 35,
+                          },
+                          
+                        }}
                       />
                       <span className={task.completed ? 'text-task' : ''}>
                         {task.text}</span>
                     </div>
                     <div className="buttons">
-                      <button onClick={()=> handleEdit(task)}>
+                      <button className="edit-btn btn" onClick={()=> handleEdit(task)}>
                         <EditIcon style={{color: 'white'}}/>
                       </button>
-                      <button onClick={() => deleteTask(task.id)} id={task.id}>
+                      <button className="delete-btn btn"
+                      onClick={() => deleteTask(task.id)} id={task.id}>
                       <IconButton aria-label="delete" size="small">
                         <DeleteIcon style={{color: 'white'}}/>
                       </IconButton>
@@ -49,7 +64,7 @@ import EditIcon from '@mui/icons-material/Edit';
           </ul>
           {tasks.length > 0 && (
           <div className="clear">
-            <button onClick={clear}>Clear</button>
+            <button className="clear-btn" onClick={clear}>Clear</button>
           </div>
         )}
         </>

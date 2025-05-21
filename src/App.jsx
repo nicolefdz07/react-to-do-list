@@ -8,9 +8,9 @@ function App() {
 
    
   return (
-    <div className="App">
-      <h1>To Do List</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="app">
+      <h1>TO DO LIST </h1>
+      <form className="task-form" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
           type="text"

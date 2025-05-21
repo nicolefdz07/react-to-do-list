@@ -1,7 +1,7 @@
 *{
   /* background-color: #485696; */
 }
-h1{
+/*h1{
   margin-bottom: 1em;
 }
 .App{
@@ -12,31 +12,39 @@ h1{
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  /* background-color: #485696; */
+  /* background-color: #485696; 
   
 
-
+.filter-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  margin: 0 auto; 
+  padding: 1rem;
+}
 }
 .App button{
   border: none;
   
 }
 
-form{
+.task-form{
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 1em;
   font-size: 1.2em;
+  
 
 }
-form input{
+.task-form input{
   width: 70%;
   padding: 1em;
   
 }
-form button{
+.task-form button{
   width: 25%;
   padding: 1em;
 }
@@ -74,7 +82,7 @@ li{
 
 
 .tasks-list{
-  /* background-color: red; */
+  /* background-color: red; 
   width: 100%;
   max-width: 800px;
 }
@@ -115,4 +123,214 @@ li button{
   display: flex;
   justify-content: center;
   
+}
+  */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+:root{
+  --primary-color: rgba(42, 9, 3, 1);
+  --secondary-color: rgba(188, 61, 94, 1);
+  --text-color: rgba(251, 228, 226, 1)
+}
+body{
+  background-color: var(--primary-color);
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  
+}
+.app{
+ 
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+ h1{
+  max-width: 300px;
+  margin: 0 auto;  
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  font-family: 'Poppins', sans-serif;
+}
+.task-form{
+  
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;  
+  max-width: 600px;
+  margin-bottom: 1em;
+  width: 100%;
+  
+}
+.task-form input{
+  font-size: 1.5rem;
+  padding: .4rem;
+  font-family: inherit;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
+  border-width: 2px;
+  border-style: solid;
+  width: 60%;
+  gap: 1rem;
+  outline: none;
+  color: var(--text-color);
+  
+}
+.task-form input::placeholder{
+  color: var(--text-color);
+  opacity: 0.7;
+}
+.task-form button{
+  font-size: 1.5rem;
+  padding: .4rem;
+  padding-inline: 1rem;
+  font-family: inherit;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-color: var(--secondary-color);
+  border-width: 2px;
+  border-style: solid;
+  width: 40%;
+  
+}
+.filter-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  margin: 0 auto; 
+  padding: 1rem;
+}
+.filter-task-btn{
+  margin-top: 1em;
+  margin-bottom: 1em;
+  max-width: 200px;
+  padding: .5rem;
+  font-family: inherit;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
+  border-width: 2px;
+  border-style: solid;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  min-height: 1.5rem;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  color: var(--text-color);
+  margin-bottom: 2rem;
+
+}
+.filter-task-btn::placeholder{
+  color: var(--text-color);
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+.tasks-list{
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.li-task{
+
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 300px;
+  padding-inline: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-family: inherit;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
+  border-width: 2px;
+  border-style: solid;
+  
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.li-task {
+  animation: fadeIn 0.3s ease-out;
+}
+
+
+
+.checkbox{
+  background-color: var(--primary-color);
+}
+.text-task{
+  text-decoration: line-through;
+  color: var(--text-color);
+}
+.buttons{
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.btn{
+  background-color: var(--primary-color);
+  border-radius: 35px;
+  border-color: var(--secondary-color);
+  border-style: solid;
+  padding: .2rem;
+  min-height: 3rem;
+  min-width: 4rem;
+}
+.btn:active{
+  background-color: var(--secondary-color);
+  border-color: var(--text-color);
+
+}.clear{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+.clear-btn{
+  background-color: var(--primary-color);
+  border-radius: 35px;
+  border-color: var(--secondary-color);
+  border-style: solid;
+  padding: .2rem;
+  width: 100%;
+  font-size: 1.5rem;
+  color: var(--text-color);
 }
