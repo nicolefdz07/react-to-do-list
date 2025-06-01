@@ -58,7 +58,7 @@ import EditIcon from '@mui/icons-material/Edit';
                 </li>
               ))
             ) : (
-              <p className="no-tasks">No tasks found</p>
+              filterInput.trim().length > 0 && <p className="no-tasks">No tasks found</p>
             )}
           </ul>
           {tasks.length > 0 && (
